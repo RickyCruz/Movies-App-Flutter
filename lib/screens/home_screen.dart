@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/widgets/card_swipper.dart';
+import 'package:movies_app/widgets/movie_slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,11 +17,14 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: const Column(
-          children: [
-            CardSwipper()
-          ],
-        ),
+        body: const SingleChildScrollView(
+          child: Column(
+            children: [
+              CardSwipper(),
+              MovieSlider(),
+            ],
+          ),
+        )
       );
     }
 }
