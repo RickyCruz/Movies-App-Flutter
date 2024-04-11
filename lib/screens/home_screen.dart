@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/widgets/card_swipper.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -6,10 +7,19 @@ class HomeScreen extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
       return Scaffold(
-        body: Container(
-          child: const Center(
-            child: Text('Home Screen'),
-          ),
+        appBar: AppBar(
+          title: const Text('Movies in theaters'),
+          actions: [
+            IconButton(
+              onPressed: () {}, 
+              icon: const Icon(Icons.search_outlined),
+            ),
+          ],
+        ),
+        body: const Column(
+          children: [
+            CardSwipper()
+          ],
         ),
       );
     }
