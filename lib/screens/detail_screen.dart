@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/widgets/casting_cards.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,11 @@ class DetailScreen extends StatelessWidget {
           _CustomAppBar(),
           SliverList(
             delegate: SliverChildListDelegate([
-              _PosterAndTitle()
+              _PosterAndTitle(),
+              _Overview(),
+              _Overview(),
+              _Overview(),
+              const CastingCards(),
             ])
           )
         ],
@@ -39,6 +43,7 @@ class _CustomAppBar extends StatelessWidget {
           color: Colors.black12,
           width: double.infinity,
           alignment: Alignment.bottomCenter,
+          padding: const EdgeInsets.only(bottom: 10),
           child: const Text(
             'movie.title',
             style: TextStyle(fontSize: 18),
@@ -100,6 +105,20 @@ class _PosterAndTitle extends StatelessWidget {
             ]
           )
         ],
+      ),
+    );
+  }
+}
+
+class _Overview extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Text(
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum ante ut ante posuere pharetra. Cras odio quam, malesuada sed interdum quis, pulvinar sit amet dolor. Etiam sit amet rhoncus arcu. Duis consequat nulla ac dignissim elementum. Maecenas at nisi ipsum. Pellentesque non orci ex. Maecenas gravida, nunc nec euismod eleifend, sem sapien imperdiet est, vitae aliquet odio eros in magna. Morbi nec felis vehicula ante egestas dignissim. Phasellus a velit diam. Praesent faucibus odio ac dolor finibus ornare. In tempus lorem felis, id tempor ligula porttitor non.',
+        textAlign: TextAlign.justify,
+        style: Theme.of(context).textTheme.titleMedium,
       ),
     );
   }
