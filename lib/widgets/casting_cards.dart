@@ -29,8 +29,8 @@ class CastingCards extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 30),
           width: double.infinity,
           height: 180,
-          child: ListView.builder(
-            itemCount: 10,
+          child: cast.isEmpty ? Container() : ListView.builder(
+            itemCount: cast.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) => _CastCard(cast: cast[index]),
           ),
