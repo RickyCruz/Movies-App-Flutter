@@ -1,5 +1,5 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:movies_app/models/movie.dart';
 
 class CardSwipper extends StatelessWidget {
@@ -13,39 +13,51 @@ class CardSwipper extends StatelessWidget {
 
     if (movies.isEmpty) {
       return SizedBox(
-        width: double.infinity,
-        height: size.height * 0.5,
+        width: size.width * 0.6,
+        height: size.height * 0.4,
         child: const Center(child: CircularProgressIndicator()),
       );
     }
 
     return SizedBox(
-      width: double.infinity,
-      height: size.height * 0.5,
-      child: Swiper(
-        itemCount: movies.length,
-        layout: SwiperLayout.STACK,
-        itemWidth: size.width * 0.6,
-        itemHeight: size.height * 0.4,
-        itemBuilder: (_, int index) {
-          final movie = movies[index];
-          movie.heroId = 'swipper-${movie.id}';
+      child: CarouselSlider.builder(
+          itemCount: movies.length,
+          itemBuilder: (_, index, __) => MoviePosterImage(movie: movies[index]),
+          options: CarouselOptions(
+            autoPlay: true,
+            aspectRatio: 2.0,
+            enlargeCenterPage: true,
+            viewportFraction: 0.45,
+          )
+      ),
+    );
+  }
+}
 
-          return GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'detail', arguments: movie),
-            child: Hero(
-              tag: movie.heroId!,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: FadeInImage(
-                  placeholder: const AssetImage('assets/no-image.jpg'),
-                  image: NetworkImage(movie.fullPosterImg),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          );
-        }
+class MoviePosterImage extends StatelessWidget {
+  const MoviePosterImage({
+    super.key,
+    required this.movie,
+  });
+
+  final Movie movie;
+
+  @override
+  Widget build(BuildContext context) {
+    movie.heroId = 'swipper-${movie.id}';
+
+    return Hero(
+      tag: movie.heroId!,
+      child: GestureDetector(
+        onTap: () => Navigator.pushNamed(context, 'detail', arguments: movie),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: FadeInImage(
+            placeholder: const AssetImage('assets/no-image.jpg'),
+            image: NetworkImage(movie.fullPosterImg),
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }
