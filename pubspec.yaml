@@ -38,6 +38,7 @@ dependencies:
   carousel_slider: ^4.2.1
   http: ^1.2.1
   provider: ^6.1.2
+  animate_do: ^3.3.4
 
 dev_dependencies:
   flutter_test:
